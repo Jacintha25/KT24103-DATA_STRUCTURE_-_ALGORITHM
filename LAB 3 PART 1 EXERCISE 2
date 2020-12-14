@@ -8,9 +8,9 @@ check whether each parenthesis symbols are opened and closed perfectly using STL
 #include<string>
 
 using namespace std;
+
 // Function to check whether two characters are opening 
 // and closing of same type. 
-
 bool ArePair(char opening,char closing)
 {
 	if(opening == '(' && closing == ')') return true;
