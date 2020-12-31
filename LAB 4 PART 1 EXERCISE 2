@@ -1,0 +1,112 @@
+#include <iostream>
+
+using namespace std;
+
+class Queue{
+	private:
+		int queueArr[5];
+		int rear;
+		int front;
+		
+	public:
+		Queue(){
+			rear = -1;
+			front = -1;
+			for(int a; a < 5; a++)
+				queueArr[a] = 0;
+		}
+		
+		void insert_queueValue(int value){
+			if(isFull()){
+				cout<< "QUEUE ALREADY FULL!.\nPlease remove some number in the queue first.\n"<< endl;
+				return;	
+			}	
+			else if(isEmpty()){
+				front = 0;
+				rear = 0;
+			}
+			else{
+				rear = (rear + 1) % 5;
+			}
+			queueArr[rear] = value;
+		}
+		
+		
+		void delete_queueValue(){
+			int del_value = 0;
+			if(isEmpty()){
+				cout << "EMPTY QUEUE!\n" << endl;
+				return;
+			}	
+			else if(front == rear){
+				del_value = queueArr[front];
+				queueArr[front] = 0;
+				rear = -1;
+				front = -1;
+			}
+			else{
+				del_value = queueArr[front];
+				queueArr[front] = 0;
+				front = (front + 1) % 5;
+			}
+			cout << "The front of the queue: " << del_value << " is removed\n" << endl;
+		}
+		
+		bool isEmpty(){
+			if(rear == -1 && front == -1)
+				return true;
+			else
+				return false;
+		}
+		
+		bool isFull(){
+			
+			if((rear + 1) % 5 == front)
+				return true;
+			else
+				return false;
+		}
+
+		void display(){
+			if(isEmpty()){
+				cout << "EMPTY QUEUE!\n" <<endl ;
+			}
+			else{
+				cout << "\nThe queue values: ";
+				for(int i = 0; i < 5; i++){
+					cout << queueArr[i] << " ";}	
+			}
+			cout << endl;
+		}		
+};
+
+int main(){
+	int action, value;
+	bool check = true;
+	Queue queue;
+	do{
+		cout << "What action do you want to perform?" << endl;
+		cout << "1.INSERT\n2.DELETE\n3.DISPLAY QUEUE\n0.EXIT PROGRAM" << endl;
+		cout << "User Action: ";
+		cin >> action;
+		
+		switch(action){
+			case 1:
+				cout << "Enter Value:";
+				cin >> value;
+				queue.insert_queueValue(value);
+				break;
+			case 2:
+				queue.delete_queueValue();
+				break;
+			case 3:
+				queue.display();
+				break;
+			case 0:
+				check = false;
+				break;
+			default:
+				cout << "INVALID ACTION!\nPLEASE TRY OTHER ACTION\n" << endl;
+		}
+	}while(check);
+}
