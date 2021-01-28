@@ -1,0 +1,51 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+/* Function to recieve input from user */
+void insertArray () {
+    int input[11];
+    
+    for(int i = 0; i<11; i++)
+    {
+    	cin >> input[i];
+	}
+    
+    //ARRAY BEFORE SORTING
+    cout << "Array before sorting: " ;
+    cout << "{ ";
+    for(int i=0; i<11; i++){
+        cout<< input[i]<< " ";
+    }
+    cout << " }" << endl;
+
+}
+
+/* Function to sort array */
+void sortingArray()
+{
+	int const length = 11;
+    int input[11];
+	
+	//ARRAY AFTER SORTING - SORT IN ASCENDING ORDER
+	cout << "Array after sorting: "; 
+    cout << "[ ";
+    sort(input, input+length);
+    for(int i=0; i<11; i++){
+        cout << input[i]<< " ";
+    }
+    cout  << " ]";
+}
+
+
+int main()
+{
+    int const length = 11;
+    int input[11];
+    
+    cout << "Insert number = " ;
+    insertArray();
+    sortingArray();
+    
+    return 0;
+}
